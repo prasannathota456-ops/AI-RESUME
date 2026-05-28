@@ -11,28 +11,40 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
+app.get("/", (req, res) => {
+  res.sendFile(process.cwd() + "/public/index.html");
+});
+
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
 });
 
 app.post("/generate-resume", async (req, res) => {
+
   try {
+
     const {
-  name,
-  title,
-  email,
-  phone,
-  location,
-  skills,
-  education,
-  projects,
-  linkedin,
-} = req.body;
+      name,
+      title,
+      email,
+      phone,
+      location,
+      skills,
+      education,
+      projects,
+      linkedin,
+    } = req.body;
 
     const prompt = `
 Create a professional resume.
 
 Name: ${name}
+Title: ${title}
+Email: ${email}
+Phone: ${phone}
+Location: ${location}
+LinkedIn: ${linkedin}
+
 Skills: ${skills}
 Education: ${education}
 Projects: ${projects}
@@ -60,13 +72,19 @@ Generate:
     res.json({ resume: result });
 
   } catch (error) {
+
     console.log(error);
+
     res.status(500).json({
       error: "Something went wrong",
     });
+
   }
+
 });
 
-app.listen(3000, () => {
-  console.log("Server running on http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on ${PORT}`);
 });
