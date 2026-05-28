@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Resume Builder</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+</head>
+
+<body>
+
+<div class="main-container">
+
+  <!-- LEFT -->
+  <div class="form-section">
+
+    <h1>
+      <i class="fa-solid fa-wand-magic-sparkles"></i>
+      AI Resume Builder
+    </h1>
+
+    <p>Create professional resumes using AI</p>
+
+    <input type="text" id="name" placeholder="Full Name">
+
+    <input type="text" id="title" placeholder="Professional Title">
+
+    <input type="email" id="email" placeholder="Email Address">
+
+    <input type="text" id="phone" placeholder="Phone Number">
+
+    <input type="text" id="location" placeholder="Location">
+
+    <input type="text" id="linkedin" placeholder="LinkedIn URL">
+
+    <textarea id="skills" placeholder="Skills"></textarea>
+
+    <textarea id="education" placeholder="Education"></textarea>
+
+    <textarea id="projects" placeholder="Projects"></textarea>
+
+    <button onclick="generateResume()">
+      <i class="fa-solid fa-bolt"></i>
+      Generate Resume
+    </button>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div class="preview-section">
+
+    <div class="resume-card">
+
+      <div class="profile-circle" id="profileCircle">
+        PR
+      </div>
+
+      <h2 id="previewName">
+        Your Name
+      </h2>
+
+      <h3 id="previewTitle">
+        Full Stack Developer
+      </h3>
+
+      <div class="contact-preview">
+        <p id="previewEmail"></p>
+        <p id="previewPhone"></p>
+        <p id="previewLocation"></p>
+        <p id="previewLinkedin"></p>
+      </div>
+
+      <div class="line"></div>
+
+      <div id="output">
+        Resume preview will appear here...
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
