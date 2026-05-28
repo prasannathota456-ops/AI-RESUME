@@ -8,6 +8,7 @@ async function generateResume(){
   const skills = document.getElementById("skills").value;
   const education = document.getElementById("education").value;
   const projects = document.getElementById("projects").value;
+  const linkedin = document.getElementById("linkedin").value;
 
   document.getElementById("previewName").innerText = name;
   document.getElementById("previewTitle").innerText = title;
@@ -20,7 +21,6 @@ async function generateResume(){
 
   document.getElementById("previewLocation").innerText =
     "📍 " + location;
-    LinkedIn: {linkedin}
 
   const initials = name
     .split(" ")
@@ -47,7 +47,7 @@ async function generateResume(){
         skills,
         education,
         projects,
-        linkedin,
+        linkedin
       })
     });
 
