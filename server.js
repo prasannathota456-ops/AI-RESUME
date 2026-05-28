@@ -2,23 +2,30 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import Groq from "groq-sdk";
+import path from "path";
 
 dotenv.config();
 
 const app = express();
 
+// Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
 
+// Serve public folder
+app.use(express.static(path.join(process.cwd(), "public")));
+
+// Home Route
 app.get("/", (req, res) => {
-  res.sendFile(process.cwd() + "/public/index.html");
+  res.sendFile(path.join(process.cwd(), "public", "index.html"));
 });
 
+// Groq API
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
 });
 
+// Generate Resume Route
 app.post("/generate-resume", async (req, res) => {
 
   try {
@@ -69,7 +76,9 @@ Generate:
 
     const result = response.choices[0].message.content;
 
-    res.json({ resume: result });
+    res.json({
+      resume: result,
+    });
 
   } catch (error) {
 
@@ -83,8 +92,9 @@ Generate:
 
 });
 
+// Port
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
